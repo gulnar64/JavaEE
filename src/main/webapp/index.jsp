@@ -1,6 +1,7 @@
-<%@ page import="aze.coders.javee.Customers" %>
+<%@ page import="aze.coders.javee.Customer" %>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="java.util.List" %>
+<%@ page import="aze.coders.javee.CustomerManager" %>
 <html>
 <head>
     <title> Customers information</title>
@@ -87,11 +88,6 @@
 <%--<br/><br/><br/>--%>
 <%--<iframe src="http://localhost:8080/JavaEE/html.html" style="width: 400px">Ifrane</iframe>--%>
 <%--<textarea name="area" style="height: 319px; width: 651px;">text</textarea>--%>
-<%
-    java.util.List<Customers> customers = new ArrayList<>();
-    for (int i = 1; i <= 10; i++)
-        customers.add(new Customers(i, "name " + i, "address " + i));
-%>
 
 <form action="http://localhost:8080/JavaEE/html.html" target="_top" method="post">
     <label name="searchLbl">Axtarish parametrleri:</label>
@@ -110,13 +106,31 @@
     </tr>
     </thead>
     <tbody>
-    <%for (Customers customer : customers) {%>
+    <%
+        CustomerManager customerManager = new CustomerManager();
+        List<Customer> customers = customerManager.getCustomers();
+        for (Customer customer : customers) {%>
+
+    System.out.println("index " + customer.getName()); %>
     <tr>
-        <td><%=customer.getId()%></td>
-        <td><%=customer.getName()%></td>
-        <td><%=customer.getAddress()%></td>
-        <td><input type="submit" value="Edit"></td>
-        <td><input type="submit" value="Delete"></td>
+        <td><%=customer.getId()%>
+        </td>
+        <td><%=customer.getName()%>
+        </td>
+        <td><%=customer.getAddress()%>
+        </td>
+        <td>
+            <form action="WEB-INF/update.jsp" method="get">
+                <input type="hidden" name="id" value="<%=customer.getId()%>">
+                <input type="submit" value="Edit">
+            </form>
+        </td>
+        <td>
+            <form action="index.jsp" method="post">
+                <%--                <%customerManager.removeCustomer(customer.getId());%>--%>
+                <input type="submit" value="Delete">
+            </form>
+        </td>
     </tr>
     <%}%>
     </tbody>
