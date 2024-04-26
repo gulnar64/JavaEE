@@ -16,7 +16,7 @@
     CustomerManager customerManager = new CustomerManager();
     Customer customer = customerManager.getCustomer(Integer.parseInt(request.getParameter("id")));
 %>
-<form action="../save.jsp" method="get">
+<form action="updateSave.jsp" method="get">
 
     <label>Name: </label>
     <input type="text" name="name" value="<%=customer.getName()%>">
@@ -25,8 +25,6 @@
     <input type="text" name="address" value="<%=customer.getAddress()%>">
     <input type="hidden" name="id" value="<%=customer.getId()%>">
     <input type="submit" name="Save">
-    <%
-        System.out.println("update " + customer.getName()); %>
 </form>
 </body>
 </html>

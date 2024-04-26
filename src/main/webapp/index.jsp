@@ -1,13 +1,12 @@
-<%@ page import="aze.coders.javee.Customer" %>
-<%@ page import="java.util.ArrayList" %>
-<%@ page import="java.util.List" %>
-<%@ page import="aze.coders.javee.CustomerManager" %>
+
 <html>
 <head>
     <title> Customers information</title>
 </head>
 <body>
-<%--<h2>Hello World!</h2>--%>
+<%
+    response.sendRedirect("home.jsp");
+%>
 <%--sdfvdfgvd--%>
 <%--fgfb--%>
 <%--knlkl--%>
@@ -89,51 +88,7 @@
 <%--<iframe src="http://localhost:8080/JavaEE/html.html" style="width: 400px">Ifrane</iframe>--%>
 <%--<textarea name="area" style="height: 319px; width: 651px;">text</textarea>--%>
 
-<form action="http://localhost:8080/JavaEE/html.html" target="_top" method="post">
-    <label name="searchLbl">Axtarish parametrleri:</label>
-    <input type="text" name="searchText" placeholder="Search customers" required/>
-    <input type="submit" name="searchBtn" value="Search customer"/>
-</form>
-<table style=" border: 1px solid blue;
-  border-collapse: collapse;">
-    <thead>
-    <tr style=" border: 1px solid blue;">
-        <th style=" border: 1px solid blue;">Id</th>
-        <th style=" border: 1px solid blue;">Name</th>
-        <th style=" border: 1px solid blue;">Surname</th>
-        <th style=" border: 1px solid blue;">Edit</th>
-        <th style=" border: 1px solid blue;">Delete</th>
-    </tr>
-    </thead>
-    <tbody>
-    <%
-        CustomerManager customerManager = new CustomerManager();
-        List<Customer> customers = customerManager.getCustomers();
-        for (Customer customer : customers) {%>
 
-    System.out.println("index " + customer.getName()); %>
-    <tr>
-        <td><%=customer.getId()%>
-        </td>
-        <td><%=customer.getName()%>
-        </td>
-        <td><%=customer.getAddress()%>
-        </td>
-        <td>
-            <form action="WEB-INF/update.jsp" method="get">
-                <input type="hidden" name="id" value="<%=customer.getId()%>">
-                <input type="submit" value="Edit">
-            </form>
-        </td>
-        <td>
-            <form action="index.jsp" method="post">
-                <%--                <%customerManager.removeCustomer(customer.getId());%>--%>
-                <input type="submit" value="Delete">
-            </form>
-        </td>
-    </tr>
-    <%}%>
-    </tbody>
-</table>
 </body>
 </head>
+</html>

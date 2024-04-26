@@ -13,10 +13,8 @@
 </head>
 <body>
 <% CustomerManager customerManager = new CustomerManager();
-
     Customer customer = new Customer(Integer.parseInt(request.getParameter("id")), request.getParameter("name"), request.getParameter("address"));
-    customerManager.updateCustomer(customer);
+    customerManager.addCustomer(customer);
     response.sendRedirect("index.jsp");%>
-
 </body>
 </html>

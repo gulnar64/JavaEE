@@ -34,8 +34,27 @@ public class CustomerManager {
     }
 
     public void updateCustomer(Customer customer) {
-        System.out.println("name: "  + customer.getName());
+        for(Customer findCustomer: customers) {
+            if(customer.getId()==findCustomer.getId()) {
+                findCustomer.setName(customer.getName());
+                findCustomer.setAddress(customer.getAddress());
+            }
+        }
         customers.set(customer.getId(), customer);
-        System.out.println("update: " + customers);
     }
+    public List<Customer> getCustomerByName(String name) {
+        System.out.println("search name: " +  name);
+        List<Customer> searcCustomers = new ArrayList<>();
+        CustomerManager customerManager = new CustomerManager();
+        List<Customer> customers = customerManager.getCustomers();
+        for (Customer customer : customers) {
+            System.out.println("name: " + customer.getName());
+            if(customer.getName().equals(name)) {
+                System.out.println("name equals" );
+                searcCustomers.add(customer);
+            }
+        }
+        return searcCustomers;
+    }
+
 }
